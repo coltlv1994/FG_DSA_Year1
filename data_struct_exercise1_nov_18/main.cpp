@@ -15,7 +15,7 @@ int main(void)
 
     for (int i = 0; i < 100; i++)
     {
-        randomList.push_back(mt.Rand_u32());
+        randomList.push_back(mt.Rand_u32() & 0x00000FFF);
     }
 
     SortList(randomList);
