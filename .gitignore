@@ -33,3 +33,10 @@
 
 # VS code
 *\.vscode
+
+# cl.exe
+*.ilk
+*.exe
+*.pdb
+*.obj
+*.pdb
