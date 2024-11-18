@@ -3,7 +3,7 @@
 
 int main(void)
 {
-    LinkedList ll = LinkedList();
+    LinkedList ll;
 
     return 0;
 }

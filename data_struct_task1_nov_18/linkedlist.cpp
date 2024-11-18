@@ -77,7 +77,7 @@ bool LinkedList::RemoveNodeByIndex(size_t index)
         delete(firstNode);
         firstNode = newFirstNode;
         size -= 1;
-        return;
+        return true;
     }
 
     Node* nodeInFront = GetNodeByIndex(index - 1);

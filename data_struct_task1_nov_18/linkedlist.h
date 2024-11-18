@@ -22,7 +22,6 @@ class LinkedList
         void Append(int initialValue);
         bool RemoveNodeByIndex(size_t index);
         void InsertAfterIndex(int initialValue, size_t index);
-        LinkedList(void);
 
     private:
         Node* firstNode = nullptr;
