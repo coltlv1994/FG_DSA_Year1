@@ -1,6 +1,7 @@
 #include <iostream>
-#include <list>
+#include <vector>
 #include "mersenne.h"
+#include "sortlist.h"
 
 int main(void)
 {
@@ -8,7 +9,7 @@ int main(void)
 
     Mersenne mt = Mersenne();
 
-    std::list<uint32_t> randomList;
+    std::vector<uint32_t> randomList;
 
     mt.Seed(seeds);
 
@@ -16,6 +17,8 @@ int main(void)
     {
         randomList.push_back(mt.Rand_u32());
     }
+
+    SortList(randomList);
 
     for (uint32_t i : randomList)
     {
