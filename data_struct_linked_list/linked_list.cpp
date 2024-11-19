@@ -105,12 +105,18 @@ void LinkedList::InsertAfterIndex(int iv, size_t index)
 void LinkedList::Clear()
 {
     /* This method has a potential bug: it won't handle a linked list with
-       circle/loop.
+       circle/loop. A method called ContainsLoop() can check if the list has
+       a loop. In production code, always check if there were any loop
+       in the list, otherwise there will be serious segmentation fault/memory
+       corruption.
 
        This method has a recursive implementation but will also suffer
        from abovementioned bug. It is NOT recommended to write recursive
-       functions in many coding guidelines and practices; a beautifully designed
+       functions in many coding guidelines and practices: a beautifully designed
        recursion may be a shithole of bug in other's eyes.
+       
+       Remember: every recursive function can be written equivalently by another
+       while/for-loop.
 
        one line:
 
@@ -125,4 +131,51 @@ void LinkedList::Clear()
         delete(releaseNode);
         releaseNode = firstNode;
     }
+}
+
+bool LinkedList::ContainsLoop(void)
+{
+    if (size == 0)
+    {
+        // for 0-sized linked list, no need to check.
+        return false;
+    }
+
+    Node* slowPointer = firstNode;
+
+    Node* fastPointer = firstNode->GetNext();
+    if (fastPointer != nullptr)
+    {
+        fastPointer = fastPointer->GetNext();
+    }
+    else
+    {
+        // has reached the end
+        return false;
+    }
+
+    while (fastPointer != nullptr)
+    {
+        if (fastPointer == slowPointer)
+        {
+            // now they meet: so there is a loop on the linked list.
+            return true;
+        }
+
+        slowPointer = slowPointer->GetNext();
+        
+        fastPointer = fastPointer->GetNext();
+        if (fastPointer == nullptr)
+        {
+            // has reached the end
+            return false;
+        }
+        else
+        {
+            // move fast pointer one more step
+            fastPointer = fastPointer->GetNext();
+        }
+    }
+    
+    return false;
 }

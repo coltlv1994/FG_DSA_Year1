@@ -12,6 +12,8 @@ class LinkedList
         void InsertAfterIndex(int initialValue, size_t index);
         void Clear(void);
 
+        bool ContainsLoop(void);
+
     private:
         Node* firstNode = nullptr;
         size_t size = 0;
