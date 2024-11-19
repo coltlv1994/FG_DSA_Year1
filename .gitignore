@@ -31,9 +31,6 @@
 *.out
 *.app
 
-# VS code
-*\.vscode
-
 # cl.exe
 *.ilk
 *.exe
