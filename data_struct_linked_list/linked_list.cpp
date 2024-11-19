@@ -1,30 +1,6 @@
 #include <iostream>
-#include "linkedlist.h"
-
-int Node::GetValue(void)
-{
-    return value;
-}
-
-Node* Node::GetNext(void)
-{
-    return next;
-}
-
-void Node::SetValue(int iv)
-{
-    value = iv;
-}
-
-void Node::SetNext(Node* n)
-{
-    next = n;
-}
-
-Node::Node(int iv)
-{
-    value = iv;
-}
+#include "node.h"
+#include "linked_list.h"
 
 Node* LinkedList::GetNodeByIndex(size_t index)
 {
@@ -124,4 +100,29 @@ void LinkedList::InsertAfterIndex(int iv, size_t index)
     size += 1;
     
     return;    
+}
+
+void LinkedList::Clear()
+{
+    /* This method has a potential bug: it won't handle a linked list with
+       circle/loop.
+
+       This method has a recursive implementation but will also suffer
+       from abovementioned bug. It is NOT recommended to write recursive
+       functions in many coding guidelines and practices; a beautifully designed
+       recursion may be a shithole of bug in other's eyes.
+
+       one line:
+
+       firstNode->_recursiveClear();
+    */
+
+    Node* releaseNode = firstNode;
+
+    while (firstNode != nullptr)
+    {
+        firstNode = firstNode->GetNext();
+        delete(releaseNode);
+        releaseNode = firstNode;
+    }
 }
