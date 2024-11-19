@@ -102,7 +102,7 @@ void LinkedList::InsertAfterIndex(int iv, size_t index)
     return;    
 }
 
-void LinkedList::Clear()
+void LinkedList::Clear(void)
 {
     /* This method has a potential bug: it won't handle a linked list with
        circle/loop. A method called ContainsLoop() can check if the list has
@@ -178,4 +178,17 @@ bool LinkedList::ContainsLoop(void)
     }
     
     return false;
+}
+
+void LinkedList::PrintAll(std::ostream &out)
+{
+    Node* startNode = firstNode;
+
+    while (startNode != nullptr)
+    {
+        out << startNode->GetValue() << ", ";
+        startNode = startNode->GetNext();
+    }
+
+    out << std::endl;
 }

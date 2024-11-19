@@ -11,15 +11,15 @@ int main(void)
         ll.Append(i);
     }
 
-    std::cout << ll.GetNodeByIndex(5)->GetValue() << std::endl;
+    ll.PrintAll(std::cout);
 
     ll.RemoveNodeByIndex(5);
 
-    std::cout << ll.GetNodeByIndex(5)->GetValue() << std::endl;
+    ll.PrintAll(std::cout);
 
     ll.InsertAfterIndex(10, 4);
 
-    std::cout << ll.GetNodeByIndex(5)->GetValue() << std::endl;
+    ll.PrintAll(std::cout);
 
     return 0;
 }

@@ -1,6 +1,7 @@
 #ifndef _LINKEDLIST_H_
 #define _LINKEDLIST_H_
 
+#include <iostream>
 #include "node.h"
 
 class LinkedList
@@ -13,6 +14,8 @@ class LinkedList
         void Clear(void);
 
         bool ContainsLoop(void);
+
+        void PrintAll(std::ostream &out);
 
     private:
         Node* firstNode = nullptr;
