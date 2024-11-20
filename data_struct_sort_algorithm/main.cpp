@@ -18,7 +18,7 @@ int main(void)
         randomList.push_back(mt.Rand_u32() & 0x00000FFF);
     }
 
-    SortListShell(randomList);
+    ShellSort(randomList);
 
     for (uint32_t i : randomList)
     {

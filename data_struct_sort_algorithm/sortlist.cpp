@@ -2,7 +2,7 @@
 #include <stdint.h>
 #include "sortlist.h"
 
-void SortList(std::vector<uint32_t> &p_list)
+void InsertionSort(std::vector<uint32_t> &p_list)
 {
     // Insertion sort
     auto listSize = p_list.size();
@@ -25,7 +25,7 @@ void SortList(std::vector<uint32_t> &p_list)
     }
 }
 
-void SortListShell(std::vector<uint32_t> &p_list)
+void ShellSort(std::vector<uint32_t> &p_list)
 {
     // Shellsort
     auto listSize = p_list.size();

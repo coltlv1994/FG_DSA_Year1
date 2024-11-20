@@ -4,9 +4,9 @@
 #include <stdint.h>
 #include <vector>
 
-void SortList(std::vector<uint32_t> &p_list);
+void InsertionSort(std::vector<uint32_t> &p_list);
 
-void SortListShell(std::vector<uint32_t> &p_list);
+void ShellSort(std::vector<uint32_t> &p_list);
 
 void _swap(uint32_t &v1, uint32_t &v2);
 
