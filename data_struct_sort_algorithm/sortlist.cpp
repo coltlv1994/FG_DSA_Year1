@@ -2,6 +2,8 @@
 #include <stdint.h>
 #include "sortlist.h"
 
+static void _swap(uint32_t &v1, uint32_t &v2);
+
 void InsertionSort(std::vector<uint32_t> &p_list)
 {
     // Insertion sort
@@ -47,7 +49,7 @@ void ShellSort(std::vector<uint32_t> &p_list)
     }
 }
 
-void _swap(uint32_t &v1, uint32_t &v2)
+static void _swap(uint32_t &v1, uint32_t &v2)
 {
     uint32_t temp = v1;
     v1 = v2;
