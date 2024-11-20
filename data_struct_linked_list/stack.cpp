@@ -9,7 +9,7 @@ Stack::Stack(size_t size)
 
 Stack::~Stack(void)
 {
-    delete(m_stack);
+    delete m_stack;
 }
 
 bool Stack::Pop(char &c)

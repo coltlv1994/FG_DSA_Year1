@@ -42,5 +42,5 @@ void Node::_recursiveClear(void)
         next->_recursiveClear();
     }
 
-    delete(this);
+    delete this;
 }

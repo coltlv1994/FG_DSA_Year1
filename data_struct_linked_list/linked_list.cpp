@@ -50,7 +50,7 @@ bool LinkedList::RemoveNodeByIndex(size_t index)
     {
         // New first node is needed
         Node* newFirstNode = firstNode->GetNext();
-        delete(firstNode);
+        delete firstNode;
         firstNode = newFirstNode;
         size -= 1;
         return true;
@@ -60,7 +60,7 @@ bool LinkedList::RemoveNodeByIndex(size_t index)
     Node* nodeToRemove = nodeInFront->GetNext();
     Node* nodeNext = nodeToRemove->GetNext();
 
-    delete(nodeToRemove);
+    delete nodeToRemove;
     size -= 1;
     nodeInFront->SetNext(nodeNext);
 
@@ -128,7 +128,7 @@ void LinkedList::Clear(void)
     while (firstNode != nullptr)
     {
         firstNode = firstNode->GetNext();
-        delete(releaseNode);
+        delete releaseNode;
         releaseNode = firstNode;
     }
 }
