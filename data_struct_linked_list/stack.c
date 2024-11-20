@@ -14,14 +14,14 @@ int Pop(char* c)
         return 1; // stack underflow
     }
 
+    *c = _stack[stack_position];
     stack_position -= 1;
-    *c = _stack[stack_position + 1];
     return 0;
 }
 
 int Push(char c)
 {
-    if (stack_position >= MAX_STACK_SIZE - 1)
+    if (stack_position == MAX_STACK_SIZE - 1)
     {
         return 1; // stack overflow
     }
