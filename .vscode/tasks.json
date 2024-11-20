@@ -7,9 +7,9 @@
             "args": [
                 "-fdiagnostics-color=always",
                 "-g",
-                "${workspaceFolder}\\*.cpp",
+                "${fileDirname}\\*.cpp",
                 "-o",
-                "${workspaceFolder}\\test.exe"
+                "${fileDirname}\\test.exe"
             ],
             "options": {
                 "cwd": "C:\\mingw64\\bin"
@@ -35,11 +35,11 @@
                 "/Zi",
                 "/EHsc",
                 "/nologo",
-                "/Fe${workspaceFolder}\\test.exe",
+                "/Fe${fileDirname}\\test.exe",
                 "*.cpp"
             ],
             "options": {
-                "cwd": "${workspaceFolder}"
+                "cwd": "${fileDirname}"
             },
             "problemMatcher": [
                 "$msCompile"
@@ -59,7 +59,7 @@
                 "*.exe *.obj *.ilk *.pdb"
             ],
             "options": {
-                "cwd": "${workspaceFolder}"
+                "cwd": "${fileDirname}"
             },
             "group": "none",
             "detail": "Clean up old build files"
