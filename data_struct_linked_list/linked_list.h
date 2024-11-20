@@ -17,6 +17,14 @@ class LinkedList
 
         void PrintAll(std::ostream &out);
 
+        // use linked list as a stack:
+        Node* Pop();
+        void Push(Node* n);
+
+        // use linked list as a queue
+        Node* DeQueue(void);
+        void EnQueue(Node* n);
+
     private:
         Node* firstNode = nullptr;
         size_t size = 0;

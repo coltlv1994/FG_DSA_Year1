@@ -21,5 +21,19 @@ int main(void)
 
     ll.PrintAll(std::cout);
 
+    std::cout << ll.ContainsLoop() << std::endl;
+
+    Node* node = ll.GetNodeByIndex(5);
+    Node* nodeLoop = ll.GetNodeByIndex(2);
+    Node* nodeToReconnect = node->GetNext();
+
+    node->SetNext(nodeLoop); // now a loop is created on purpose
+
+    std::cout << ll.ContainsLoop() << std::endl;
+
+    node->SetNext(nodeToReconnect); // restore it
+
+    std::cout << ll.ContainsLoop() << std::endl;
+
     return 0;
 }

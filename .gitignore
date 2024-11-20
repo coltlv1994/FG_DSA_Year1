@@ -37,3 +37,6 @@
 *.pdb
 *.obj
 *.pdb
+
+# vscode
+settings.json
