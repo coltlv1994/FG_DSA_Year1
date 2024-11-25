@@ -3,22 +3,22 @@
 
 class Node
 {
-    public:
-        int GetValue(void);
-        Node* GetNext(void);
-        Node* GetPrevious(void);
-        void SetValue(int valueToSet);
-        void SetNext(Node* n);
-        void SetPrevious(Node* n);
+public:
+    int GetValue(void);
+    Node *GetNext(void);
+    Node *GetPrevious(void);
+    void SetValue(int valueToSet);
+    void SetNext(Node *n);
+    void SetPrevious(Node *n);
 
-        void _recursiveClear(void);
+    void _recursiveClear(void);
 
-        Node(int initialValue);
-    
-    private:
-        int value;
-        Node* previous = nullptr;
-        Node* next = nullptr;
+    Node(int initialValue);
+
+private:
+    int value;
+    Node *previous = nullptr;
+    Node *next = nullptr;
 };
 
 #endif

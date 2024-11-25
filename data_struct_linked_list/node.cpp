@@ -5,7 +5,7 @@ int Node::GetValue(void)
     return value;
 }
 
-Node* Node::GetNext(void)
+Node *Node::GetNext(void)
 {
     return next;
 }
@@ -15,7 +15,7 @@ void Node::SetValue(int iv)
     value = iv;
 }
 
-void Node::SetNext(Node* n)
+void Node::SetNext(Node *n)
 {
     next = n;
 }
@@ -25,12 +25,12 @@ Node::Node(int iv)
     value = iv;
 }
 
-Node* Node::GetPrevious(void)
+Node *Node::GetPrevious(void)
 {
     return previous;
 }
 
-void Node::SetPrevious(Node* n)
+void Node::SetPrevious(Node *n)
 {
     previous = n;
 }

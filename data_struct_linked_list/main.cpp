@@ -1,39 +1,20 @@
 #include <iostream>
-#include "node.h"
-#include "linked_list.h"
+#include "array_list.h"
 
 int main(void)
 {
-    LinkedList ll;
+    ArrayList al;
 
-    for (int i = 0; i < 15; i++)
+    for (int i = 0; i < 20; i++)
     {
-        ll.Append(i);
+        al.Push_back(i);
     }
 
-    ll.PrintAll(std::cout);
+    std::cout << al[5] << std::endl;
 
-    ll.RemoveNodeByIndex(5);
+    al[5] = 50;
 
-    ll.PrintAll(std::cout);
-
-    ll.InsertAfterIndex(10, 4);
-
-    ll.PrintAll(std::cout);
-
-    std::cout << ll.ContainsLoop() << std::endl;
-
-    Node* node = ll.GetNodeByIndex(5);
-    Node* nodeLoop = ll.GetNodeByIndex(2);
-    Node* nodeToReconnect = node->GetNext();
-
-    node->SetNext(nodeLoop); // now a loop is created on purpose
-
-    std::cout << ll.ContainsLoop() << std::endl;
-
-    node->SetNext(nodeToReconnect); // restore it
-
-    std::cout << ll.ContainsLoop() << std::endl;
+    al.PrintAll();
 
     return 0;
 }

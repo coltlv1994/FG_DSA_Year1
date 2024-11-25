@@ -6,28 +6,24 @@
 
 class LinkedList
 {
-    public:
-        Node* GetNodeByIndex(size_t index);
-        void Append(int initialValue);
-        bool RemoveNodeByIndex(size_t index);
-        void InsertAfterIndex(int initialValue, size_t index);
-        void Clear(void);
+public:
+    Node *GetNodeByIndex(size_t index);
+    void Append(int initialValue);
+    bool RemoveNodeByIndex(size_t index);
+    void InsertAfterIndex(int initialValue, size_t index);
+    void Clear(void);
 
-        bool ContainsLoop(void);
+    bool ContainsLoop(void);
 
-        void PrintAll(std::ostream &out);
+    void PrintAll(std::ostream &out = std::cout);
 
-        // use linked list as a stack:
-        Node* Pop();
-        void Push(Node* n);
+    // use linked list as a queue
+    int DeQueue(void);
+    void EnQueue(int iv);
 
-        // use linked list as a queue
-        Node* DeQueue(void);
-        void EnQueue(Node* n);
-
-    private:
-        Node* firstNode = nullptr;
-        size_t size = 0;
+private:
+    Node *firstNode = nullptr;
+    size_t size = 0;
 };
 
 #endif
