@@ -37,7 +37,7 @@
                 "/EHsc",
                 "/nologo",
                 "/Fe${fileDirname}\\test.exe",
-                "*.cpp"
+                "${fileDirname}\\*.cpp"
             ],
             "options": {
                 "cwd": "${fileDirname}"
