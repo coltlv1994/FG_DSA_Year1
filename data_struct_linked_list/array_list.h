@@ -162,20 +162,24 @@ void ArrayList<T>::InsertionSort(void)
 template <typename T>
 void ArrayList<T>::ShellSort(void)
 {
-    for (size_t gap = m_length / 2; gap > 0; gap /= 2)
+    size_t gap = 1;
+    while (gap < m_length / 3)
+    {
+        // choose an initial gap
+        gap = 3 * gap + 1;
+    }
+
+    while (gap >= 1)
     {
         for (size_t i = gap; i < m_length; i++)
         {
-            T temp = m_valueList[i];
-
-            size_t j = i;
-            for (; j >= gap && m_valueList[j - gap] > temp; j -= gap)
+            for (size_t j = i; j >= gap && m_valueList[j] < m_valueList[j - gap]; j -= gap)
             {
-                m_valueList[j] = m_valueList[j - gap];
+                _swap(m_valueList[j], m_valueList[j - gap]);
             }
-
-            m_valueList[j] = temp;
         }
+
+        gap /= 3;
     }
 }
 

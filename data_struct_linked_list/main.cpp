@@ -6,8 +6,8 @@
 int main(void)
 {
     std::random_device r;
-    std::uniform_real_distribution<double> rngf(0.0, 1.0);
-    std::uniform_int_distribution<int> rngi(0,99);
+    std::uniform_real_distribution<double> rngf(0.0, 10.0);
+    std::uniform_int_distribution<int> rngi(0,999);
     std::default_random_engine re(r());
 
     ArrayList<double> alf;
