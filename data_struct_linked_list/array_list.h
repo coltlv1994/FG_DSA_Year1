@@ -17,11 +17,16 @@ public:
 
     void PrintAll(std::ostream &out = std::cout);
 
+    // sorting algorithms
+    void InsertionSort(void);
+    void ShellSort(void);
+
 private:
     T *m_valueList = nullptr;
     size_t m_size = 0;   // size of internal memory area
     size_t m_length = 0; // occupied
     bool _resize();
+    void _swap(T &a, T &b);
 };
 
 template <typename T>
@@ -123,6 +128,55 @@ void ArrayList<T>::PrintAll(std::ostream &out)
     }
 
     out << std::endl;
+}
+
+template <typename T>
+void ArrayList<T>::_swap(T &v1, T &v2)
+{
+    T temp = v1;
+    v1 = v2;
+    v2 = temp;
+}
+
+template <typename T>
+void ArrayList<T>::InsertionSort(void)
+{
+    for (size_t i = 0; i < m_length; i++)
+    {
+        size_t jMin = i;
+        for (size_t j = i + 1; j < m_length; j++)
+        {
+            if (m_valueList[j] < m_valueList[jMin])
+            {
+                jMin = j;
+            }
+        }
+
+        if (jMin != i)
+        {
+            _swap(m_valueList[i], m_valueList[jMin]);
+        }
+    }
+}
+
+template <typename T>
+void ArrayList<T>::ShellSort(void)
+{
+    for (size_t gap = m_length / 2; gap > 0; gap /= 2)
+    {
+        for (size_t i = gap; i < m_length; i++)
+        {
+            T temp = m_valueList[i];
+
+            size_t j = i;
+            for (; j >= gap && m_valueList[j - gap] > temp; j -= gap)
+            {
+                m_valueList[j] = m_valueList[j - gap];
+            }
+
+            m_valueList[j] = temp;
+        }
+    }
 }
 
 #endif
