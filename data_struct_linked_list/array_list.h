@@ -4,23 +4,125 @@
 #include <iostream>
 #include <cstdint>
 
+template <typename T>
 class ArrayList
 {
 public:
-    bool Push_back(int p_newInt);
+    bool Push_back(T p_newElement);
     bool RemoveAt(size_t p_index);
     size_t Length(void);
-    int &ElementAt(size_t p_index);
+    T &ElementAt(size_t p_index);
     ~ArrayList(void);
-    int &operator[](size_t index);
+    T &operator[](size_t index);
 
-    void PrintAll(std::ostream &out = std::cout);
+    void PrintAll(std::ostream &out);
 
 private:
-    int *m_valueList = nullptr;
+    T *m_valueList = nullptr;
     size_t m_size = 0;   // size of internal memory area
     size_t m_length = 0; // occupied
     bool _resize();
 };
+
+template <typename T>
+bool ArrayList<T>::Push_back(T p_newElement)
+{
+    if (m_length == m_size)
+    {
+        _resize();
+    }
+
+    m_valueList[m_length] = p_newElement;
+    m_length += 1;
+    return true;
+}
+
+template <typename T>
+bool ArrayList<T>::RemoveAt(size_t p_index)
+{
+    if (p_index >= m_length)
+    {
+        // out-of-range
+        return false;
+    }
+
+    // this can handle overlapping memory, while memcpy() won't.
+    memmove(m_valueList + p_index,
+            m_valueList + (p_index + 1),
+            (m_length - p_index - 1) * sizeof(T));
+
+    m_length -= 1;
+    return true;
+}
+
+template <typename T>
+size_t ArrayList<T>::Length(void)
+{
+    return m_length;
+}
+
+template <typename T>
+T &ArrayList<T>::ElementAt(size_t p_index)
+{
+    if (p_index >= m_length)
+    {
+        throw std::overflow_error("Index out of range!");
+    }
+
+    return m_valueList[p_index];
+}
+
+template <typename T>
+bool ArrayList<T>::_resize()
+{
+    // now the intermal m_valueList is full, i.e. m_length == m_size.
+    T *newValueList = new T[m_size + 100]; // 100 new space.
+
+    if (newValueList == nullptr)
+    {
+        // allocation fails
+        throw std::overflow_error("Memory allocation failure!");
+    }
+
+    if (m_size != 0)
+    {
+        // copy
+        memcpy(newValueList, m_valueList, sizeof(m_valueList)); // memcpy(dest, src, size);
+        // release old one
+        delete m_valueList;
+    }
+
+    m_valueList = newValueList;
+    m_size += 100;
+    return true;
+}
+
+template <typename T>
+ArrayList<T>::~ArrayList(void)
+{
+    delete m_valueList;
+}
+
+template <typename T>
+T &ArrayList<T>::operator[](size_t p_index)
+{
+    if (p_index >= m_length)
+    {
+        throw std::overflow_error("Index out of range!");
+    }
+
+    return m_valueList[p_index];
+}
+
+template <typename T>
+void ArrayList<T>::PrintAll(std::ostream &out)
+{
+    for (size_t i = 0; i < m_length; i++)
+    {
+        out << m_valueList[i] << ", ";
+    }
+
+    out << std::endl;
+}
 
 #endif

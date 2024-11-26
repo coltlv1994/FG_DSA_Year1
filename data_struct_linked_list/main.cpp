@@ -1,20 +1,17 @@
 #include <iostream>
+#include "linked_list.h"
 #include "array_list.h"
 
 int main(void)
 {
-    ArrayList al;
+    LinkedList<int> ll;
 
     for (int i = 0; i < 20; i++)
     {
-        al.Push_back(i);
+        ll.Append(i);
     }
 
-    std::cout << al[5] << std::endl;
-
-    al[5] = 50;
-
-    al.PrintAll();
+    ll.PrintAll(std::cout);
 
     return 0;
 }
