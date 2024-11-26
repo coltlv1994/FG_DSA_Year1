@@ -16,7 +16,7 @@ public:
 
     bool ContainsLoop(void);
 
-    void PrintAll(std::ostream &out);
+    void PrintAll(std::ostream &out = std::cout);
 
     // use linked list as a queue
     T DeQueue(void);

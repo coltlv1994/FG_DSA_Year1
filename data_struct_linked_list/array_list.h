@@ -15,7 +15,7 @@ public:
     ~ArrayList(void);
     T &operator[](size_t index);
 
-    void PrintAll(std::ostream &out);
+    void PrintAll(std::ostream &out = std::cout);
 
 private:
     T *m_valueList = nullptr;
