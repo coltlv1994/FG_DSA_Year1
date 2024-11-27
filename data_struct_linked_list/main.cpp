@@ -6,23 +6,27 @@
 int main(void)
 {
     std::random_device r;
-    std::uniform_real_distribution<double> rngf(0.0, 10.0);
-    std::uniform_int_distribution<int> rngi(0,999);
+    std::uniform_int_distribution<int> rngi(0,49);
     std::default_random_engine re(r());
 
-    ArrayList<double> alf;
     ArrayList<int> ali;
+
+    // int predefined[] = {39, 35, 46, 3, 37, 6, 21, 36, 19, 19, 46, 29, 30, 0, 37, 8, 17, 5, 10, 22};
 
     for (int i = 0; i < 20; i++)
     {
-        alf.Push_back(rngf(re));
         ali.Push_back(rngi(re));
     }
 
-    alf.InsertionSort();
-    ali.ShellSort();
+    // for (int iv : predefined)
+    // {
+    //     ali.Push_back(iv);
+    // }
 
-    alf.PrintAll();
+    ali.PrintAll();
+
+    ali.QuickSort();
+
     ali.PrintAll();
 
     return 0;

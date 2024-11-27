@@ -1,29 +1,28 @@
 #ifndef _DOUBLELINKEDLIST_H_
 #define _DOUBLELINKEDLIST_H_
 
-#include <cstdint>
 #include "node.h"
 
 template <typename T>
 class DoubleLinkedList
 {
 public:
-    Node<T> *GetNodeByIndex(size_t index);
+    Node<T> *GetNodeByIndex(int index);
     void Append(T initialValue);
-    bool RemoveNodeByIndex(size_t index);
-    void InsertAfterIndex(T initialValue, size_t index);
+    bool RemoveNodeByIndex(int index);
+    void InsertAfterIndex(T initialValue, int index);
 
 private:
     Node<T> *firstNode = nullptr;
     Node<T> *lastNode = nullptr;
-    size_t size = 0;
+    int size = 0;
 };
 
 template <typename T>
-Node<T> *DoubleLinkedList<T>::GetNodeByIndex(size_t index)
+Node<T> *DoubleLinkedList<T>::GetNodeByIndex(int index)
 {
     Node<T> *returnNode = firstNode;
-    size_t i = 0;
+    int i = 0;
 
     while (returnNode != nullptr)
     {
@@ -59,9 +58,9 @@ void DoubleLinkedList<T>::Append(T iv)
 }
 
 template <typename T>
-bool DoubleLinkedList<T>::RemoveNodeByIndex(size_t index)
+bool DoubleLinkedList<T>::RemoveNodeByIndex(int index)
 {
-    if (index >= size)
+    if (index >= size || index < 0)
     {
         // out-of-range
         return false;
@@ -94,7 +93,7 @@ bool DoubleLinkedList<T>::RemoveNodeByIndex(size_t index)
 }
 
 template <typename T>
-void DoubleLinkedList<T>::InsertAfterIndex(T iv, size_t index)
+void DoubleLinkedList<T>::InsertAfterIndex(T iv, int index)
 {
     // new value will be inserted after this given index
     if (size == 0)
@@ -110,7 +109,7 @@ void DoubleLinkedList<T>::InsertAfterIndex(T iv, size_t index)
         }
     }
 
-    if (index >= size)
+    if (index >= size || index < 0)
     {
         // out-of-range
         return;

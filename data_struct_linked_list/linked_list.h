@@ -8,10 +8,10 @@ template <typename T>
 class LinkedList
 {
 public:
-    Node<T> *GetNodeByIndex(size_t index);
+    Node<T> *GetNodeByIndex(int index);
     void Append(T initialValue);
-    bool RemoveNodeByIndex(size_t index);
-    void InsertAfterIndex(T initialValue, size_t index);
+    bool RemoveNodeByIndex(int index);
+    void InsertAfterIndex(T initialValue, int index);
     void Clear(void);
 
     bool ContainsLoop(void);
@@ -24,14 +24,14 @@ public:
 
 private:
     Node<T> *firstNode = nullptr;
-    size_t size = 0;
+    int size = 0;
 };
 
 template <typename T>
-Node<T> *LinkedList<T>::GetNodeByIndex(size_t index)
+Node<T> *LinkedList<T>::GetNodeByIndex(int index)
 {
     Node<T> *returnNode = firstNode;
-    size_t i = 0;
+    int i = 0;
 
     while (returnNode != nullptr)
     {
@@ -66,9 +66,9 @@ void LinkedList<T>::Append(T iv)
 }
 
 template <typename T>
-bool LinkedList<T>::RemoveNodeByIndex(size_t index)
+bool LinkedList<T>::RemoveNodeByIndex(int index)
 {
-    if (index >= size)
+    if (index >= size || index < 0)
     {
         // out-of-range
         return false;
@@ -96,7 +96,7 @@ bool LinkedList<T>::RemoveNodeByIndex(size_t index)
 }
 
 template <typename T>
-void LinkedList<T>::InsertAfterIndex(T iv, size_t index)
+void LinkedList<T>::InsertAfterIndex(T iv, int index)
 {
     // new value will be inserted after this given index
     if (size == 0)
@@ -112,7 +112,7 @@ void LinkedList<T>::InsertAfterIndex(T iv, size_t index)
         }
     }
 
-    if (index >= size)
+    if (index >= size || index < 0)
     {
         // out-of-range
         return;
