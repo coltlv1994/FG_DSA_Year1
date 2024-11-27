@@ -162,30 +162,6 @@ void ArrayList<T>::InsertionSort(void)
 }
 
 template <typename T>
-void ArrayList<T>::ShellSort(void)
-{
-    int gap = 1;
-    while (gap < m_length / 3)
-    {
-        // choose an initial gap
-        gap = 3 * gap + 1;
-    }
-
-    while (gap >= 1)
-    {
-        for (int i = gap; i < m_length; i++)
-        {
-            for (int j = i; j >= gap && m_valueList[j] < m_valueList[j - gap]; j -= gap)
-            {
-                _swap(m_valueList[j], m_valueList[j - gap]);
-            }
-        }
-
-        gap /= 3;
-    }
-}
-
-template <typename T>
 void ArrayList<T>::QuickSort(void)
 {
     _quicksort(0, m_length - 1);
@@ -216,16 +192,10 @@ int ArrayList<T>::_partition(int lowIndex, int highIndex)
         {
             _swap(m_valueList[compareIndex], m_valueList[writeIndex]);
             writeIndex -= 1;
-            PrintAll();
         }
     }
 
     _swap(m_valueList[writeIndex], m_valueList[lowIndex]);
-
-    PrintAll();
-    std::cout << "writeIndex: " << writeIndex << ", pivotValue: " << pivotValue << ", lowIndex: " << lowIndex << ", highIndex" << highIndex << std::endl;
-    std::cout << std::endl;
-
     return writeIndex;
 }
 #endif
