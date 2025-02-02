@@ -4,21 +4,14 @@
 
 int main(void)
 {
-    BinarySearchTree<int> bstInt = BinarySearchTree<int>();
+    BinarySearchTree bstInt = BinarySearchTree();
 
     bstInt.Add(65);
     bstInt.Add(110);
     bstInt.Add(100);
 
     std::vector<int> result;
-    bstInt.Traverse(result, Traversal::InOrder);
-
-    for (int i : result)
-    {
-        std::cout << i << ", ";
-    }
-
-    std::cout << std::endl;
+    bstInt.Traverse(result, Traversal::InOrder, std::cout);
 
     return 0;
 }

@@ -1,0 +1,59 @@
+2: section; F: ferry; T: tunnel
+
+Athina-Angora (5) 5, 2S, 1F, 1T
+Budapest-Sofia (5) 5, 2S, 1T
+Frankfurt-Kobenhavn (5) 5, 2S, 1F
+Rostov-Erzurum (5) 5, 2S, 1T
+Sofia-Smyrna (5) 5, 2S, 1F
+Kyiv-Petrograd (6) 6, 2S
+Zurich-Brindisi (6) 6, 3S, 1T
+Zurich-Budapest (6) 6, 3S, 1T
+Warszawa-Smolensk (6) 6, 2S
+Zagrab-Brindisi (6) 6, 3S
+Paris-Zagreb (7) 7, 3S, 2T
+Brest-Marseille (7) 7, 2S
+London-Berlin (7) 7, 3S, 1F
+Edinburgh-Paris (7) 7, 3S, 1F
+Amsterdam-Pamplona (7) 7, 3S
+Roma-Smyrna (8) 8, 3S, 2F
+Palermo-Constantinople (8) 8, 2S, 2F, 1T
+Sarajevo-Sevastopol (8) 8, 3S, 2T
+Madrid-Dieppe (8) 8, 3S, 1T
+Barcelona-Bruxelles (8) 8, 3S, 1T
+Paris-Wien (8) 8, 3S
+Barcelona-Munchen (8) 8, 3S, 2T
+Brest-Venezia (8) 8, 3S, 2T
+Smolensk-Rostov (8) 8, 3S
+Marseille-Essen (8) 8, 4S
+Kyiv-Sochi (8) 8, 3S
+Madrid-Zurich (8) 8, 3S, 1T
+Berlin-Bucuresti (8) 8, 3S, 1T
+Bruxelles-Danzic (9) 9, 3S
+Berlin-Roma (9) 9, 4S, 1T
+Angora-Kharkov (10) 10, 4S, 1T
+Riga-Bucuresti (10) 10, 3S
+Essen-Kyiv (10) 10, 3S
+Venizia-Constantinople (10) 10, 3S, 1T
+London-Wien (10) 9, 4S, 2F
+Athina-Wilno (11) 11, 4S, 1T
+Stockholm-Wien (11) 11, 4S, 1F
+Berlin-Moskva (12) 12, 4S
+Amsterdam-Wilno (12) 12, 4S
+Frankfurt-Smolensk (13) 13, 4S
+
+Lisboa-Danzic (20) 20, 7S, 1T
+Brest-Petrograd (20) 20, 6S
+Palermo-Moskva (20) 20, 6S, 2F, 1T
+Kobenhavn-Erzurum (21) 21, 8S, 1F, 2T
+Edinburgh-Athina (21) 21, 9S, 2F, 2T
+Cadiz-Stockholm (21) 21, 7S, 1F, 1T
+
+--------------------
+
+City on 4 tickets: Berlin
+
+Cities on 3 tickets: Athina, Kyiv, Zurich, Smolensk, Paris, Brest, Wien
+
+Cities on 2 tickets: Angora, Budapest, Sofia, Frankfurt, Kobenhavn, Rostov, Erzurum, Smyrna, Petrograd, Brindisi, Zagreb, Marseille, London, Edinburgh, Amsterdam, Roma, Palermo, Constantinople, Madrid, Barcelona, Bruxelles, Venezia, Essen, Bucuresti, Danaic, Wilno, Stockholm, Moskva
+
+Cities appearing on only 1 ticket: Warszawa, Pamplona, Sarajevo, Sevastopol, Dieppe, Munchen, Rostov, Sochi, Kharkov, Riga, Cadiz, Lisboa.
