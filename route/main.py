@@ -1,5 +1,6 @@
+import copy
 from enum import Enum
-
+from operator import itemgetter
 
 class Loc(Enum):
     COLTER = 1
@@ -37,6 +38,25 @@ class Loc(Enum):
     THIEVES = 33
     DAKOTA = 34
     CALIGA = 35
+
+    def __lt__(self, other):
+        return self.value < other.value
+
+class Node:
+    def __init__(self, name):
+        self.name = name
+        self.neighborList = dict()
+        self.parent = 0
+        self.distance = 100000
+    
+    def __gt__(self, other):
+        return self.distance > other.distance
+    
+    def __lt__(self, other):
+        return self.distance < other.distance
+    
+    def __eq__(self, other):
+        return self.distance == other.distance
 
 
 route_list = []
@@ -100,6 +120,8 @@ route_list.append((Loc.COUJAR, Loc.TUMNBLEWEED, 2))
 route_list.append((Loc.COUJAR, Loc.BENEDICT, 2))
 route_list.append((Loc.TUMNBLEWEED, Loc.BENEDICT, 3))
 route_list.append((Loc.TUMNBLEWEED, Loc.MERCER, 4))
+route_list.append((Loc.BENEDICT, Loc.MERCER, 3))
+route_list.append((Loc.BENEDICT, Loc.DON_JILA, 4))
 route_list.append((Loc.MERCER, Loc.DON_JILA, 2))
 route_list.append((Loc.MERCER, Loc.ARMADILLO, 3))
 route_list.append((Loc.DON_JILA, Loc.ARMADILLO, 2))
@@ -108,16 +130,106 @@ route_list.append((Loc.DON_JILA, Loc.THIEVES, 4))
 route_list.append((Loc.ARMADILLO, Loc.MACFARLANE, 3))
 route_list.append((Loc.MACFARLANE, Loc.THIEVES, 2))
 
-connection_map = dict()
+all_loc = []
+for loc in Loc:
+    all_loc.append(loc)
 
-def build_connection_map(start_loc):
-    dict_to_add = dict()
-    for road in route_list:
-        if road[0] == start_loc:
-            dict_to_add[road[1]] = road[2]
+minimum_distance = dict()
+game_map = dict()
+for loc in Loc:
+    game_map[loc] = Node(loc)
+
+# construct node's neighbor information
+for road in route_list:
+    game_map[road[0]].neighborList[road[1]] = road[2]
+    game_map[road[1]].neighborList[road[0]] = road[2]
+
+def BuildMinimumDistance():
+    for loc in Loc:
+        minimum_distance[loc] = dict()
+
+def Dijkstra(src):
+    # make a copy of game map
+    visited_nodes = set()
+    distance_map = dict()
+
+    for key, value in game_map.items():
+        distance_map[key] = value.distance
+    distance_map[src] = 0
+
+    # for key, value in cost_map:
+    #     value.parent = 0
+    #     value.distance = 100000
+
+    # start from farther map
+    for dst in reversed(Loc):
+        if dst == src:
+            # don't have to go through src node
+            continue
+
+        if dst in minimum_distance[src]:
+            # a path is constructed already
+            continue
+
+        distance_map_copy = copy.deepcopy(distance_map)
+        game_map_copy = copy.deepcopy(game_map)
+        game_map_copy[src].distance = 0
+
+        # now we found a destination without shortest path
+        # make a copy of cost map
+        while len(distance_map_copy) != 0:
+            visited_nodes.clear()
+            current_node = min(distance_map_copy, key=distance_map_copy.get)
+            if current_node == dst:
+                break
+
+            for key, value in game_map_copy[current_node].neighborList.items():
+                # go through all neighbors
+                if (key not in visited_nodes) and (game_map_copy[current_node].distance + value < game_map_copy[key].distance):
+                    game_map_copy[key].distance = game_map_copy[current_node].distance + value
+                    game_map_copy[key].parent = current_node
+                    distance_map_copy[key] = game_map_copy[key].distance
+            
+            visited_nodes.add(current_node)
+            del distance_map_copy[current_node]
         
-        if road[1] == start_loc:
-            dict_to_add[road[0]] = road[2]
-    
-    connection_map[start_loc] = dict_to_add
+        path = []
+        tail = dst
 
+        while tail != 0:
+            path.append(tail)
+            tail = game_map_copy[tail].parent
+        
+        if src == Loc.BRANDWINE and dst == Loc.BENEDICT:
+            print(path)
+        
+        for node in path:
+            if (node != src):
+                (minimum_distance[src])[node] = game_map_copy[node].distance
+                (minimum_distance[node])[src] = game_map_copy[node].distance
+
+
+BuildMinimumDistance()
+for loc in Loc:
+    Dijkstra(loc)
+
+ticket_list = []
+
+for src, dstList in minimum_distance.items():
+    for dst, distance in dstList.items():
+        if src < dst and dst not in game_map[src].neighborList:
+            ticket_list.append((src, dst, distance))
+
+# sort by distance
+ticket_list.sort(key=itemgetter(2))
+
+file_to_write = open("ticket_rdr2.csv", "w")
+
+file_to_write.write("station1,station2,cost\n")
+
+for (src, dst, distance) in ticket_list:
+    file_to_write.write(f"{src.name},{dst.name},{distance}\n")
+
+file_to_write.close()
+
+print("\n")
