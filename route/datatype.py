@@ -130,6 +130,11 @@ def CreateRoute():
     return_list.append((Loc.ARMADILLO, Loc.MACFARLANE, 3))
     return_list.append((Loc.MACFARLANE, Loc.THIEVES, 2))
 
+    # count road
+    route_length = [i[2] for i in return_list]
+    for length in range(1,9):
+        print(f"Number of length of {length}: {route_length.count(length)}.\n")
+
     return return_list
 
 def GetAllLocations():
@@ -211,9 +216,6 @@ def DikjstraShortestPath(src, p_gameMap, p_minDistance):
         while tail != 0:
             path.append(tail)
             tail = game_map_copy[tail].parent
-        
-        if src == Loc.BRANDWINE and dst == Loc.BENEDICT:
-            print(path)
         
         for node in path:
             if (node != src):
